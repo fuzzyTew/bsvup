@@ -125,7 +125,7 @@ async function findExist(buf, mime) {
             if (databuf.equals(buf)) resolve(tx)
             else reject()
         })
-    })).catch(err => null)
+    })).catch(err => { console.log('ERROR'); console.log(err) })
     if (matchTX){
         Cache.saveFileRecord(sha1, records)
         return matchTX
@@ -174,7 +174,7 @@ async function getTX(txid) {
                 }
             })
         }
-    }).catch(err => null)
+    }).catch(err => { console.log('ERROR'); console.log(err) })
 }
 
 /*
