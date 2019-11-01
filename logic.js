@@ -184,6 +184,8 @@ async function createUploadTasksEx(filedatum){
             var dTask = upload_dTask(filedata.dKey, bTasks)
             tasks.push(dTask)
             bTasks.forEach(bTask => tasks.push(bTask))
+            var sats = bTasks.reduce((total, task)=>total += Math.max(DUST_LIMIT, task.satoshis + BASE_TX), 0)
+            if(global.verbose) console.log(`     ${sats} satoshis`)
         }else if(!filedata.dExist){
             if(global.verbose) console.log(` - Create D tasks for ${filedata.dKey}`)
             var dTask = update_dTask(filedata.dKey, filedata.dValue)
