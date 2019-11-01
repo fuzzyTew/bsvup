@@ -440,7 +440,7 @@ async function fundTasks(tasks, privkey, utxos) {
     var satoshisProvided = utxos.reduce((totalProvided, utxo)=>totalProvided += (utxo.amount)? Math.round(utxo.amount * 1e8) : utxo.satoshis, 0)
     if (satoshisProvided - satoshisRequired - tasks.length * SIZE_PER_OUTPUT < 0) {
         console.log(`当前地址余额不足以完成上传操作，差额大约为 ${satoshisRequired + tasks.length * SIZE_PER_OUTPUT - satoshisProvided} satoshis`)
-        console.log(`Insuffient satoshis, still need ${satoshisRequired + tasks.length * SIZE_PER_OUTPUT - satoshisProvided} satoshis`)
+        console.log(`Insuffient satoshis, need ${satoshisRequired + tasks.length * SIZE_PER_OUTPUT} satoshis and have ${satoshisProvided}`)
         console.log("请使用 charge 命令获取转账地址 Use charge command to acquire charge address")
         throw new Error("Insuffient satoshis.")
     }
