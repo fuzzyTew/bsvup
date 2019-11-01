@@ -93,9 +93,11 @@ async function tryBroadcastAll(TXs){
       try {
         await broadcast(tx, unBroadcast)
       } catch([txid,err]) {
+	console.log('pre-error')
         console.log(`${txid} 广播失败，原因 fail to broadcast:`)
         console.log(err.split("\n")[0])
         console.log(err.split("\n")[2])
+	console.log('post-error')
       }
     }
     return Cache.saveUnbroadcast(unBroadcast)
